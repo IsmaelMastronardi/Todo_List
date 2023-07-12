@@ -1,0 +1,80 @@
+body {
+  background-color: rgb(240, 240, 240);
+}
+
+.todoListSection {
+  width: 300px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px grey;
+}
+
+.todoTitle,
+.todoAddP {
+  height: 40px;
+  border-bottom: 1px solid;
+  flex-direction: row;
+  align-items: center;
+}
+
+.todoAddP {
+  font-style: oblique;
+  color: grey;
+}
+
+.listPlaceholder {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 10px;
+  display: flex;
+}
+
+li {
+  border-bottom: 1px solid;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input {
+  margin-left: 10px;
+}
+
+.itemName {
+  width: 100%;
+}
+
+.itemTextArea {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  resize: none;
+  border: 0;
+  overflow: hidden;
+}
+
+.clearBtn {
+  height: 40px;
+  border: none;
+  transition: 0.1s;
+}
+
+.clearBtn:active {
+  background-color: rgb(211, 211, 211);
+}
+
+.imgDiv {
+  display: flex;
+  justify-content: end;
+}
+
+.Dots {
+  width: 20px;
+}

@@ -1,6 +1,6 @@
 import './style.css';
 import {
-  tasks, todoList, displayList, addTask, switchCompleted, clearTasks, edit, removeTask
+  tasks, todoList, displayList, addTask, inspectTask,
 } from './modules/addEditRemove.js';
 
 const addBtn = document.querySelector('#addBtn');
@@ -10,8 +10,4 @@ addBtn.addEventListener('click', addTask);
 tasks.sort((a, b) => a.index - b.index);
 tasks.forEach((obj) => displayList(obj));
 
-todoList.addEventListener('click', switchCompleted);
-todoList.addEventListener('click', edit);
-// todoList.addEventListener('click', removeTask);
-
-deleteBtn.addEventListener('click', clearTasks);
+todoList.addEventListener('click', inspectTask);

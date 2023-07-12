@@ -14,8 +14,8 @@ export function displayList(obj) {
   item.className = 'ListItem';
   item.id = obj.index;
   item.innerHTML = `
-  <input type="checkbox" class="checkboxBtn" id="${obj.index}">
-  <textarea name="itemDescription" class="itemTextArea" id="${obj.index}" rows="1" cols="50">
+  <input type="checkbox" class="checkboxBtn" id="a${obj.index}">
+  <textarea name="itemDescription" class="itemTextArea" id="b${obj.index}" rows="1" cols="50">
   ${obj.description}
   </textarea>
   <div class="imgDiv">
@@ -23,6 +23,10 @@ export function displayList(obj) {
   </div>
   `;
   todoList.appendChild(item);
+  if (obj.completed === true) {
+    const checkbox = document.querySelector(`#a${obj.index}`);
+    checkbox.checked = true;
+  }
 }
 
 export function clearList() {
@@ -52,8 +56,8 @@ function updateArray() {
   }
 }
 
-export const switchCompleted = (e) => {
-  const btnId = e.target.id;
+const switchCompleted = (e, shortId) => {
+  const btnId = shortId;
   if (e.target.matches('.checkboxBtn')) {
     const currentValue = tasks[btnId].completed;
     tasks[btnId].completed = !currentValue;
@@ -67,26 +71,24 @@ const remove = (itemId) => {
   clearList();
   tasks.forEach((obj) => displayList(obj));
   updateLocalStorage();
+  console.log(tasks);
 };
-
-export const edit = (e) => {
+const edit = (e, shortId, dots) => {
   e.stopPropagation();
-  const itemId = e.target.id;
   const elem = e.target;
-  const dots = document.querySelector(`#d${itemId}`);
   if (elem.matches('.itemTextArea')) {
     dots.src = Trash;
     dots.addEventListener('click', () => {
-      remove(itemId);
+      remove(shortId);
     });
     elem.addEventListener('keypress', (e) => {
       if (e.which === 13) {
         e.preventDefault();
         const text = e.target.value;
         if (text.trimStart().replace(/[\n]/gm, '').trimEnd() === '') {
-          remove(itemId);
+          remove(shortId);
         } else {
-          tasks[itemId].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
+          tasks[shortId].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
           updateLocalStorage();
         }
       }
@@ -97,17 +99,75 @@ export const edit = (e) => {
   }
 };
 
-export const clearTasks = () => {
-  const len = tasks.length;
-  for (let i = len - 1; i >= 0; i -= 1) {
-    if (tasks[i].completed === true) {
-      console.log(tasks[i]);
-      tasks.splice(i, 1);
-      console.log(tasks);
-    }
-    updateArray();
-  }
-  clearList();
-  tasks.forEach((obj) => displayList(obj));
-  updateLocalStorage();
+export const inspectTask = (e) => {
+  const newId = e.target.id;
+  const shortId = newId.substring(1);
+  const dots = document.querySelector(`#d${shortId}`);
+  edit(e, shortId, dots);
+  switchCompleted(e, shortId);
 };
+
+// Added this because I thougth it was supouse to be done for today,
+// it was for tomorrows activity. It works (if you import it again),
+// but either way I have to use filter insted of splice, so i will be
+// changing that tomorrow.
+
+// export const clearTasks = () => {
+//   const len = tasks.length;
+//   for (let i = len - 1; i >= 0; i -= 1) {
+//     if (tasks[i].completed === true) {
+//       console.log(tasks[i]);
+//       tasks.splice(i, 1);
+//       console.log(tasks);
+//     }
+//     updateArray();
+//   }
+//   clearList();
+//   tasks.forEach((obj) => displayList(obj));
+//   updateLocalStorage();
+// };
+
+// export const edit = (e) => {
+//   e.stopPropagation();
+//   const itemId = e.target.id;
+//   const elem = e.target;
+//   const dots = document.querySelector(`#d${itemId}`);
+//   if (elem.matches('.itemTextArea')) {
+//     dots.src = Trash;
+//     dots.addEventListener('click', () => {
+//       remove(itemId);
+//     });
+//     elem.addEventListener('keypress', (e) => {
+//       if (e.which === 13) {
+//         e.preventDefault();
+//         const text = e.target.value;
+//         if (text.trimStart().replace(/[\n]/gm, '').trimEnd() === '') {
+//           remove(itemId);
+//         } else {
+//           tasks[itemId].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
+//           updateLocalStorage();
+//         }
+//       }
+//     });
+//     document.body.addEventListener('click', () => {
+//       dots.src = Icon;
+//     });
+//   }
+// };
+
+// export const switchCompleted = (e) => {
+//   const btnId = e.target.id;
+//   if (e.target.matches('.checkboxBtn')) {
+//     const currentValue = tasks[btnId].completed;
+//     tasks[btnId].completed = !currentValue;
+//   }
+//   updateLocalStorage();
+// };
+
+// const remove = (itemId) => {
+//   tasks.splice(itemId, 1);
+//   updateArray();
+//   clearList();
+//   tasks.forEach((obj) => displayList(obj));
+//   updateLocalStorage();
+// };

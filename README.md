@@ -44,7 +44,7 @@
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
-- [https://ismaelmastronardi.github.io/Todo_List/]
+- [https://ismaelmastronardi.github.io/Todo_List/dist/index.html#live-demo]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -79,7 +79,7 @@ Example commands:
 
 ```
   cd my-folder
-  git clone https://github.com/MustafaSamiShirzad/Awesome-Books.git
+  git clone https://github.com/IsmaelMastronardi/Todo_List.git
 ```
 ---
 

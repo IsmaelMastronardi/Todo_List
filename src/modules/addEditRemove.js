@@ -14,7 +14,7 @@ export function displayList(obj) {
   item.className = 'ListItem';
   item.innerHTML = `
   <input type="checkbox" class="checkboxBtn" id="${obj.index}">
-  <textarea name="itemDescription" class="itemTextArea" rows="1" cols="50">
+  <textarea name="itemDescription" class="itemTextArea" id="${obj.index}" rows="1" cols="50">
   ${obj.description}
   </textarea>
   <div class="imgDiv">
@@ -42,7 +42,7 @@ export const addTask = () => {
     tasks.forEach((obj) => displayList(obj));
     addTaskArea.value = '';
   }
- updateLocalStorage();
+  updateLocalStorage();
 };
 
 export const switchCompleted = (e) => {
@@ -52,6 +52,21 @@ export const switchCompleted = (e) => {
     tasks[btnId].completed = !currentValue;
   }
   updateLocalStorage();
+};
+
+export const edit = (e) => {
+  const textId = e.target.id;
+  const elem = e.target;
+  if (elem.matches('.itemTextArea')) {
+    elem.addEventListener('keypress', (e) => {
+      if (e.which === 13) {
+        e.preventDefault();
+        const text = e.target.value;
+        tasks[textId].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
+        updateLocalStorage();
+      }
+    });
+  }
 };
 
 function updateArray() {

@@ -85,7 +85,7 @@ Example commands:
 
 ### Install
 
-Install this project with: git
+Install this project using git, with the npm i command, Then run the project using the command npm start.
 
 ### Run tests
 

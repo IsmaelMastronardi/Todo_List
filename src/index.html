@@ -7,11 +7,14 @@
 </head>
 <body>
   <section class="todoListSection">
-    <p class="todoTitle">Today's To Do</p>     
-    <p class="todoAddP">Add to your list...</p>
+    <p class="todoTitle">Today's To Do</p>  
+    <div>
+      <textarea class="todoAddP" name="" id="addTaskArea" cols="30" rows="1" placeholder="Add to your list..."></textarea>
+      <input type="button" id="addBtn">
+    </div>   
     <ul class="listPlaceholder" id="todoListPlaceholder">
     </ul>
-    <button class="clearBtn">Clear all completed</button>
+    <button class="clearBtn" id="clearBtn">Clear all completed</button>
   </section>
   <div id="test"></div>
 </body>

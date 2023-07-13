@@ -71,7 +71,6 @@ const remove = (itemId) => {
   clearList();
   tasks.forEach((obj) => displayList(obj));
   updateLocalStorage();
-  console.log(tasks);
 };
 const edit = (e, shortId, dots) => {
   e.stopPropagation();

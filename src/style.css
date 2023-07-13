@@ -65,6 +65,10 @@ body {
   margin: 0;
 }
 
+.hasLineThrough {
+  text-decoration: line-through;
+}
+
 p {
   margin-top: 0;
   margin-bottom: 0;

@@ -1,40 +1,39 @@
 import Icon from '../assets/images/icon.png';
 import Trash from '../assets/images/trash.png';
-import {switchCompleted, hola} from './statusUpdates.js';
+import { switchCompleted } from './statusUpdates.js';
+import { displayList, clearList } from './displayAndClear';
 
-export const todoList = document.querySelector('#todoListPlaceholder');
 const addTaskArea = document.querySelector('#addTaskArea');
 export const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
 function updateLocalStorage() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export function displayList(obj) {
-  const item = document.createElement('li');
-  item.className = 'ListItem';
-  item.id = obj.index;
-  item.innerHTML = `
-  <input type="checkbox" class="checkboxBtn" id="a${obj.index}">
-  <textarea name="itemDescription" class="itemTextArea" id="b${obj.index}" rows="1" cols="50">
-  ${obj.description}
-  </textarea>
-  <div class="imgDiv">
-  <img src="${Icon}" class="Dots" id="d${obj.index}">
-  </div>
-  `;
-  todoList.appendChild(item);
-  if (obj.completed === true) {
-    const checkbox = document.querySelector(`#a${obj.index}`);
-    checkbox.checked = true;
-  }
-}
+// export function displayList(obj) {
+//   const item = document.createElement('li');
+//   item.className = 'ListItem';
+//   item.id = obj.index;
+//   item.innerHTML = `
+//   <input type="checkbox" class="checkboxBtn" id="a${obj.index}">
+//   <textarea name="itemDescription" class="itemTextArea" id="b${obj.index}" rows="1" cols="50">
+//   ${obj.description}
+//   </textarea>
+//   <div class="imgDiv">
+//   <img src="${Icon}" class="Dots" id="d${obj.index}">
+//   </div>
+//   `;
+//   todoList.appendChild(item);
+//   if (obj.completed === true) {
+//     const checkbox = document.querySelector(`#a${obj.index}`);
+//     checkbox.checked = true;
+//   }
+// }
 
-export function clearList() {
-  while (todoList.firstChild) {
-    todoList.removeChild(todoList.firstChild);
-  }
-}
+// export function clearList() {
+//   while (todoList.firstChild) {
+//     todoList.removeChild(todoList.firstChild);
+//   }
+// }
 
 export const addTask = () => {
   if (addTaskArea.value !== '') {
@@ -54,7 +53,6 @@ export const addTask = () => {
 function updateArray() {
   for (let i = 0; i < tasks.length; i += 1) {
     tasks[i].index = i + 1;
-    console.log(tasks[i].index);
   }
 }
 

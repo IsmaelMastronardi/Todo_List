@@ -1,11 +1,14 @@
 import './style.css';
 import {
-  tasks, todoList, displayList, addTask, inspectTask,
+  tasks, addTask, inspectTask,
 } from './modules/addEditRemove.js';
+import { todoList, displayList } from './modules/displayAndClear.js';
+import { clearAllCompleted } from './modules/statusUpdates.js';
 import arrow from './assets/images/backArrow.png';
 
 const addBtn = document.querySelector('#addBtn');
 const addBtnImg = document.querySelector('#buttonImg');
+const clearBtn = document.querySelector('#clearBtn');
 
 addBtnImg.src = arrow;
 addBtn.addEventListener('click', addTask);
@@ -14,3 +17,9 @@ tasks.sort((a, b) => a.index - b.index);
 tasks.forEach((obj) => displayList(obj));
 
 todoList.addEventListener('click', inspectTask);
+
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  clearAllCompleted(tasks);
+  console.log(tasks);
+});

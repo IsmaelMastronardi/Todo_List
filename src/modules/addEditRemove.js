@@ -1,5 +1,6 @@
 import Icon from '../assets/images/icon.png';
 import Trash from '../assets/images/trash.png';
+import {switchCompleted, hola} from './statusUpdates.js';
 
 export const todoList = document.querySelector('#todoListPlaceholder');
 const addTaskArea = document.querySelector('#addTaskArea');
@@ -57,15 +58,6 @@ function updateArray() {
   }
 }
 
-const switchCompleted = (e, shortId) => {
-  const btnId = shortId;
-  if (e.target.matches('.checkboxBtn')) {
-    const currentValue = tasks[btnId].completed;
-    tasks[btnId].completed = !currentValue;
-  }
-  updateLocalStorage();
-};
-
 const remove = (itemId) => {
   tasks.splice(itemId - 1, 1);
   updateArray();
@@ -88,7 +80,7 @@ const edit = (e, shortId, dots) => {
         if (text.trimStart().replace(/[\n]/gm, '').trimEnd() === '') {
           remove(shortId);
         } else {
-          tasks[shortId].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
+          tasks[shortId - 1].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
           updateLocalStorage();
         }
       }
@@ -104,5 +96,6 @@ export const inspectTask = (e) => {
   const shortId = newId.substring(1);
   const dots = document.querySelector(`#d${shortId}`);
   edit(e, shortId, dots);
-  switchCompleted(e, shortId);
+  switchCompleted(e, shortId, tasks);
+  updateLocalStorage();
 };

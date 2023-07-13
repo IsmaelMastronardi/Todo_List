@@ -40,7 +40,7 @@ export const addTask = () => {
     const newTask = {
       description: addTaskArea.value,
       completed: false,
-      index: tasks.length,
+      index: tasks.length + 1,
     };
     tasks.push(newTask);
     clearList();
@@ -52,7 +52,8 @@ export const addTask = () => {
 
 function updateArray() {
   for (let i = 0; i < tasks.length; i += 1) {
-    tasks[i].index = i;
+    tasks[i].index = i + 1;
+    console.log(tasks[i].index);
   }
 }
 
@@ -66,7 +67,7 @@ const switchCompleted = (e, shortId) => {
 };
 
 const remove = (itemId) => {
-  tasks.splice(itemId, 1);
+  tasks.splice(itemId - 1, 1);
   updateArray();
   clearList();
   tasks.forEach((obj) => displayList(obj));
@@ -105,23 +106,3 @@ export const inspectTask = (e) => {
   edit(e, shortId, dots);
   switchCompleted(e, shortId);
 };
-
-// Added this because I thougth it was supouse to be done for today,
-// it was for tomorrows activity. It works (if you import it again),
-// but either way I have to use filter insted of splice, so i will be
-// changing that tomorrow.
-
-// export const clearTasks = () => {
-//   const len = tasks.length;
-//   for (let i = len - 1; i >= 0; i -= 1) {
-//     if (tasks[i].completed === true) {
-//       console.log(tasks[i]);
-//       tasks.splice(i, 1);
-//       console.log(tasks);
-//     }
-//     updateArray();
-//   }
-//   clearList();
-//   tasks.forEach((obj) => displayList(obj));
-//   updateLocalStorage();
-// };

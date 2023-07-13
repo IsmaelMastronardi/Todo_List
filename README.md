@@ -38,6 +38,8 @@
 ### Key Features <a name="key-features"></a>
 
 - **[dinamically created item task list]**
+- **[Add and remove tasks]**
+- **[Keep tasks in local Storage]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -79,7 +81,7 @@ Example commands:
 
 ```
   cd my-folder
-  git clone https://github.com/MustafaSamiShirzad/Awesome-Books.git
+  git clone https://github.com/IsmaelMastronardi/Todo_List.git
 ```
 ---
 

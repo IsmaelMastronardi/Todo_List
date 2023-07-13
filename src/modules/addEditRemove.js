@@ -1,7 +1,7 @@
 import Icon from '../assets/images/icon.png';
 import Trash from '../assets/images/trash.png';
 import { switchCompleted } from './statusUpdates.js';
-import { displayList, clearList } from './displayAndClear';
+import { displayList, clearList } from './displayAndClear.js';
 
 const addTaskArea = document.querySelector('#addTaskArea');
 export const tasks = JSON.parse(localStorage.getItem('tasks')) || [];

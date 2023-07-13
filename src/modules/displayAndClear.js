@@ -8,9 +8,7 @@ export function displayList(obj) {
   item.id = obj.index;
   item.innerHTML = `
   <input type="checkbox" class="checkboxBtn" id="a${obj.index}">
-  <textarea name="itemDescription" class="itemTextArea" id="b${obj.index}" rows="1" cols="50">
-  ${obj.description}
-  </textarea>
+  <textarea name="itemDescription" class="itemTextArea" id="b${obj.index}" rows="1" cols="50">${obj.description}</textarea>
   <div class="imgDiv">
   <img src="${Icon}" class="Dots" id="d${obj.index}">
   </div>

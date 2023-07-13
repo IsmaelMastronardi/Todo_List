@@ -25,7 +25,6 @@ export const clearAllCompleted = (oldArr) => {
   for (let i = 0; i < filteredArray.length; i += 1) {
     oldArr.push(filteredArray[i]);
   }
-  console.log(oldArr);
   clearList();
   oldArr.forEach((obj) => displayList(obj));
 };

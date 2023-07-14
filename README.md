@@ -38,6 +38,8 @@
 ### Key Features <a name="key-features"></a>
 
 - **[dinamically created item task list]**
+- **[Add and remove tasks]**
+- **[Keep tasks in local Storage]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

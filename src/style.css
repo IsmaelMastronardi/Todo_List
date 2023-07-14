@@ -12,21 +12,61 @@ body {
 
 .todoTitle,
 .todoAddP {
-  height: 40px;
   border-bottom: 1px solid;
   flex-direction: row;
   align-items: center;
 }
 
+.addContainer {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid;
+}
+
+.addBtn {
+  background-color: transparent;
+  margin-left: 0;
+  margin-right: 10px;
+  border: 0;
+  z-index: 2;
+  width: 18px;
+}
+
+.buttonImg {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+}
+
+.todoTitle {
+  height: 40px;
+}
+
 .todoAddP {
+  height: 18px;
+  margin-left: 10px;
   font-style: oblique;
   color: grey;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 14px;
+  resize: none;
+  overflow: hidden;
 }
 
 .listPlaceholder {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.hasLineThrough {
+  text-decoration: line-through;
 }
 
 p {

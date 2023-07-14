@@ -1,40 +1,31 @@
 import './style.css';
-import Icon from './assets/images/icon.png';
+import {
+  tasks, addTask, inspectTask,
+} from './modules/addEditRemove.js';
+import { todoList, displayList } from './modules/displayAndClear.js';
+import { clearAllCompleted } from './modules/statusUpdates.js';
+import arrow from './assets/images/backArrow.png';
 
-const tasks = [
-  {
-    description: 'First Item',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Third Item',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Second Item',
-    completed: false,
-    index: 2,
-  },
-];
+const addBtn = document.querySelector('#addBtn');
+const addBtnImg = document.querySelector('#buttonImg');
+const clearBtn = document.querySelector('#clearBtn');
+const addTaskTextArea = document.querySelector('#addTaskArea');
+addTaskTextArea.addEventListener('keypress', (e) => {
+  if (e.which === 13) {
+    e.preventDefault();
+    addTask();
+  }
+});
 
-const todoList = document.querySelector('#todoListPlaceholder');
-
-function displayList(obj) {
-  const item = document.createElement('li');
-  item.className = 'ListItem';
-  item.innerHTML = `
-  <input type="checkbox" class"checkboxBtn">
-  <textarea name="itemDescription" class="itemTextArea" rows="1" cols="50">
-  ${obj.description}
-  </textarea>
-  <div class="imgDiv">
-  <img src="${Icon}" class="Dots">
-  </div>
-  `;
-  todoList.appendChild(item);
-}
+addBtnImg.src = arrow;
+addBtn.addEventListener('click', addTask);
 
 tasks.sort((a, b) => a.index - b.index);
 tasks.forEach((obj) => displayList(obj));
+
+todoList.addEventListener('click', inspectTask);
+
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  clearAllCompleted(tasks);
+});

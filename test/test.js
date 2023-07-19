@@ -46,4 +46,14 @@ const addTask = () => {
   updateLocalStorage();
 };
 
-module.exports = sum;
+const remove = (e, itemId) => {
+  tasks.splice(itemId - 1, 1);
+  updateArray();
+  clearList();
+  tasks.forEach((obj) => displayList(obj));
+  updateLocalStorage();
+};
+
+export {
+  addTask, remove
+};

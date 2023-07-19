@@ -8,16 +8,16 @@ const localStorageMock = (() => {
 
   return {
     store,
-    getItem: ((key) => store[key] || []),
-    setItem: ((key, value) => {
+    getItem: (key) => store[key] || [],
+    setItem: (key, value) => {
       store[key] = JSON.stringify(value);
-    }),
-    removeItem: ((key) => {
+    },
+    removeItem: (key) => {
       delete store[key];
-    }),
-    clear: (() => {
+    },
+    clear: () => {
       store = {};
-    }),
+    },
   };
 })();
 

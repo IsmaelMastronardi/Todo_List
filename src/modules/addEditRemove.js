@@ -31,15 +31,20 @@ function updateArray() {
   }
 }
 
-const remove = (itemId) => {
+const remove = (e, itemId) => {
   tasks.splice(itemId - 1, 1);
   updateArray();
   clearList();
   tasks.forEach((obj) => displayList(obj));
   updateLocalStorage();
 };
+
 const edit = (e, shortId, dots) => {
   e.stopPropagation();
+  const allDots = document.querySelectorAll('.Dots');
+  allDots.forEach((img) => {
+    img.src = Icon;
+  });
   const elem = e.target;
   if (elem.matches('.itemTextArea')) {
     dots.src = Trash;
@@ -50,17 +55,17 @@ const edit = (e, shortId, dots) => {
       if (e.which === 13) {
         e.preventDefault();
         const text = e.target.value;
-        if (text.trimStart().replace(/[\n]/gm, '').trimEnd() === '') {
+        if (text === '') {
           remove(shortId);
         } else {
-          tasks[shortId - 1].description = text.trimStart().replace(/[\n]/gm, '').trimEnd();
+          tasks[shortId - 1].description = text;
           updateLocalStorage();
         }
       }
     });
-    document.body.addEventListener('click', () => {
-      dots.src = Icon;
-    });
+    // document.body.addEventListener('click', () => {
+    //   dots.src = Icon;
+    // });
   }
 };
 

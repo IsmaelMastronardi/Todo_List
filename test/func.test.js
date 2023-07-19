@@ -1,7 +1,7 @@
 import {
   addTask,
-  remove,
-} from './test.js';
+  removeTasks,
+} from './funcT.js';
 
 const localStorageMock = (() => {
   let store = {};
@@ -23,17 +23,17 @@ const localStorageMock = (() => {
 
 describe('addTask', () => {
   it('Adding a new object of tasks and save it in Local Storage', () => {
-    const mockDescription = 'Testing Part 1';
+    // const mockDescription = 'text';
     const expectedList = [
       {
-        index: 1,
-        description: 'Testing Part 1',
         completed: false,
+        description: 'text',
+        index: 1,
       },
     ];
 
-    addTask(mockDescription);
-    expect(JSON.parse(localStorage.store.myList)).toStrictEqual(expectedList);
+    addTask();
+    expect(JSON.parse(localStorage.store.tasks)).toStrictEqual(expectedList);
   });
 });
 
@@ -48,10 +48,10 @@ describe('remove', () => {
       },
     ];
 
-    localStorage.setItem('myList', removeList);
+    localStorage.setItem('tasks', removeList);
 
-    remove(removeindex);
-    expect(JSON.parse(localStorage.store.myList)).toStrictEqual('[]');
+    removeTasks(removeindex);
+    expect(JSON.parse(localStorage.store.tasks)).toStrictEqual('[]');
   });
 });
 

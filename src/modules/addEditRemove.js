@@ -31,13 +31,14 @@ function updateArray() {
   }
 }
 
-const remove = (itemId) => {
+const remove = (e, itemId) => {
   tasks.splice(itemId - 1, 1);
   updateArray();
   clearList();
   tasks.forEach((obj) => displayList(obj));
   updateLocalStorage();
 };
+
 const edit = (e, shortId, dots) => {
   e.stopPropagation();
   const allDots = document.querySelectorAll('.Dots');
@@ -62,9 +63,9 @@ const edit = (e, shortId, dots) => {
         }
       }
     });
-    document.body.addEventListener('click', () => {
-      dots.src = Icon;
-    });
+    // document.body.addEventListener('click', () => {
+    //   dots.src = Icon;
+    // });
   }
 };
 

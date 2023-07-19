@@ -1,8 +1,9 @@
 body {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(206, 204, 204);
 }
 
 .todoListSection {
+  margin: auto;
   width: 300px;
   background-color: white;
   display: flex;

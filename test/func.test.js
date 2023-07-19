@@ -23,7 +23,6 @@ const localStorageMock = (() => {
 
 describe('addTask', () => {
   it('Adding a new object of tasks and save it in Local Storage', () => {
-    // const mockDescription = 'text';
     const expectedList = [
       {
         completed: false,

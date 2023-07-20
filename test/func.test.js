@@ -1,8 +1,14 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { JSDOM } from 'jsdom';
 import {
   addTask,
   removeTasks,
+  edit,
 } from './funcT.js';
 
+const dom = new JSDOM('<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>');
+global.window = dom.window;
+global.document = window.document;
 const localStorageMock = (() => {
   let store = {};
 
@@ -51,6 +57,34 @@ describe('remove', () => {
 
     removeTasks(removeindex);
     expect(JSON.parse(localStorage.store.tasks)).toStrictEqual('[]');
+  });
+});
+
+describe('edit function', () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+        <textarea id='text-area-1'>Changed Value</textarea>
+        <textarea id='text-area-2'></textarea>
+      `;
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('allows one to update the description of the task at a particular index', () => {
+    const newText = document.querySelector('#text-area-1');
+    const expectedList = [
+      {
+        completed: false,
+        description: 'Changed Value',
+        index: 1,
+      },
+    ];
+
+    edit(newText);
+
+    expect(JSON.parse(localStorage.store.tasks)).toStrictEqual(expectedList);
   });
 });
 

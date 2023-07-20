@@ -53,10 +53,6 @@ const clearAllCompleted = (oldArr) => {
     filteredArray[i].id = i + 1;
   }
   localStorage.setItem('tasks', (filteredArray));
-  // oldArr.splice(0, oldArr.length);
-  // for (let i = 0; i < filteredArray.length; i += 1) {
-  //   oldArr.push(filteredArray[i]);
-  // }
 };
 
 export {

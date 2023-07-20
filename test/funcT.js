@@ -22,7 +22,7 @@ const removeTasks = (e, itemId) => {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
-const edit = (e, newText) => {
+const edit = (newText) => {
   const tasks = [];
 
   const myTasks = {
@@ -30,11 +30,10 @@ const edit = (e, newText) => {
     description: 'old Text',
     index: 1,
   };
-  
 
   myTasks.description = newText;
   tasks.push(myTasks);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem('tasks', (tasks));
   
 
   // const elem = e.target;

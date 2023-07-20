@@ -7,6 +7,7 @@ import {
 } from './funcT.js';
 
 const dom = new JSDOM('<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>');
+
 global.window = dom.window;
 global.document = window.document;
 const localStorageMock = (() => {
@@ -73,7 +74,7 @@ describe('edit function', () => {
   });
 
   it('allows one to update the description of the task at a particular index', () => {
-    const newText = document.querySelector('#text-area-1');
+    const newText = dom.window.document.querySelector('#text-area-1').value;
     const expectedList = [
       {
         completed: false,

@@ -5,6 +5,7 @@ import {
   removeTasks,
   edit,
   switchCompleted,
+  clearAllCompleted,
 } from './funcT.js';
 
 const dom = new JSDOM('<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>');
@@ -116,6 +117,37 @@ describe('Operations on Completed tasks', () => {
         localExpected,
       );
     });
+  });
+});
+
+describe('removeCompleted task', () => {
+  it('removes all the tasks marked as completed', () => {
+    const deleteContents = [
+      {
+        id: 1,
+        desc: 'Testing Part 1',
+        completed: false,
+      },
+      {
+        id: 2,
+        desc: 'Testing Part 2',
+        completed: true,
+      },
+    ];
+    const localExpected = [
+      {
+        id: 1,
+        desc: 'Testing Part 1',
+        completed: false,
+      },
+    ];
+
+    localStorage.setItem('tasks', deleteContents);
+
+    clearAllCompleted(deleteContents);
+    expect(JSON.parse(localStorage.store.tasks)).toStrictEqual(
+      localExpected,
+    );
   });
 });
 

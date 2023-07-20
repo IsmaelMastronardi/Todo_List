@@ -47,20 +47,18 @@ const switchCompleted = (shortId) => {
   localStorage.setItem('tasks', (tasks));
 };
 
-// export const clearAllCompleted = (oldArr) => {
-//   const filteredArray = oldArr.filter((item) => item.completed === false);
-//   for (let i = 0; i < filteredArray.length; i += 1) {
-//     filteredArray[i].index = i + 1;
-//   }
-//   localStorage.setItem('tasks', JSON.stringify(filteredArray));
-//   oldArr.splice(0, oldArr.length);
-//   for (let i = 0; i < filteredArray.length; i += 1) {
-//     oldArr.push(filteredArray[i]);
-//   }
-//   clearList();
-//   oldArr.forEach((obj) => displayList(obj));
-// };
+const clearAllCompleted = (oldArr) => {
+  const filteredArray = oldArr.filter((item) => item.completed === false);
+  for (let i = 0; i < filteredArray.length; i += 1) {
+    filteredArray[i].id = i + 1;
+  }
+  localStorage.setItem('tasks', (filteredArray));
+  // oldArr.splice(0, oldArr.length);
+  // for (let i = 0; i < filteredArray.length; i += 1) {
+  //   oldArr.push(filteredArray[i]);
+  // }
+};
 
 export {
-  addTask, removeTasks, edit, switchCompleted,
+  addTask, removeTasks, edit, switchCompleted, clearAllCompleted,
 };

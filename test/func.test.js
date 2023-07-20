@@ -4,6 +4,7 @@ import {
   addTask,
   removeTasks,
   edit,
+  switchCompleted,
 } from './funcT.js';
 
 const dom = new JSDOM('<!DOCTYPE html><body><p id="main">My First JSDOM!</p></body>');
@@ -86,6 +87,35 @@ describe('edit function', () => {
     edit(newText);
 
     expect(JSON.parse(localStorage.store.tasks)).toStrictEqual(expectedList);
+  });
+});
+
+describe('Operations on Completed tasks', () => {
+  describe('completedmylist', () => {
+    it('should toggle completed attribute of a task in the localStorage', () => {
+      const toggleId = 1;
+      const toggleList = [
+        {
+          id: 1,
+          desc: 'Testing Part 1',
+          completed: false,
+        },
+      ];
+      const localExpected = [
+        {
+          id: 1,
+          desc: 'Testing Part 1',
+          completed: true,
+        },
+      ];
+
+      localStorage.setItem('tasks', toggleList);
+
+      switchCompleted(toggleId);
+      expect(JSON.parse(localStorage.store.tasks)).toStrictEqual(
+        localExpected,
+      );
+    });
   });
 });
 

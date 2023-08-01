@@ -31,7 +31,7 @@ function updateArray() {
   }
 }
 
-const remove = (e, itemId) => {
+const remove = (itemId) => {
   tasks.splice(itemId - 1, 1);
   updateArray();
   clearList();
@@ -49,7 +49,10 @@ const edit = (e, shortId, dots) => {
   if (elem.matches('.itemTextArea')) {
     dots.src = Trash;
     dots.addEventListener('click', () => {
-      remove(shortId);
+      if (dots.src === Trash) {
+        console.log(shortId);
+        remove(shortId);
+      }
     });
     elem.addEventListener('keypress', (e) => {
       if (e.which === 13) {
